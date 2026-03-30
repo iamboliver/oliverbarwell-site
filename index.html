@@ -235,6 +235,12 @@
       border: 1px solid rgba(107, 95, 160, 0.2);
     }
 
+    .badge-lang {
+      background: #F0F0F0;
+      color: #555555;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     /* ── OPEN SOURCE ── */
     .empty-state {
       background: var(--card-bg);
@@ -354,7 +360,7 @@
   <header class="hero">
     <div class="container">
       <h1 class="hero-name">Oliver <span>Barwell</span></h1>
-      <p class="hero-primary">Dad of an autistic son. I build the apps we needed.</p>
+      <p class="hero-primary">Dad of an autistic son. I build the apps we need.</p>
       <p class="hero-secondary">Engineering lead by day. Indie developer by night.</p>
     </div>
   </header>
@@ -364,7 +370,7 @@
     <div class="container">
       <p class="section-heading">Apps</p>
       <h2 class="section-title">Apps I've built for our family</h2>
-      <p class="section-intro">My son is autistic. These apps started as solutions to real daily problems in our house.</p>
+      <p class="section-intro">These apps started as solutions to real daily problems in our house.</p>
 
       <div class="apps-grid">
 
@@ -417,8 +423,41 @@
       <p class="section-heading">Open Source</p>
       <h2 class="section-title">Work I've open sourced</h2>
       <p class="section-intro">Occasionally I open source tools and services I've built in a professional context. Listed here when available.</p>
-      <div class="empty-state">
-        <p>Projects will appear here as they're released.</p>
+      <div class="apps-grid">
+
+        <!-- engineer-dash -->
+        <div class="app-card">
+          <h3 class="app-name"><a href="https://github.com/iamboliver/engineer-dash" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">engineer-dash</a></h3>
+          <p class="app-tagline">Engineering delivery metrics dashboard</p>
+          <p class="app-description">React dashboard visualising Jira delivery metrics across engineers and teams — cycle times, lead times, throughput, and production releases.</p>
+          <div class="app-footer">
+            <span class="badge badge-lang">TypeScript</span>
+            <a href="https://github.com/iamboliver/engineer-dash" target="_blank" rel="noopener" style="font-size: 13px; color: var(--accent); text-decoration: none;">View on GitHub →</a>
+          </div>
+        </div>
+
+        <!-- dynamic-product-timeline -->
+        <div class="app-card">
+          <h3 class="app-name"><a href="https://github.com/iamboliver/dynamic-product-timeline" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">dynamic-product-timeline</a></h3>
+          <p class="app-tagline">Interactive product roadmap timeline</p>
+          <p class="app-description">A horizontal timeline component for showcasing product features, releases, and roadmaps. Built with React, TypeScript, and Framer Motion.</p>
+          <div class="app-footer">
+            <span class="badge badge-lang">TypeScript</span>
+            <a href="https://github.com/iamboliver/dynamic-product-timeline" target="_blank" rel="noopener" style="font-size: 13px; color: var(--accent); text-decoration: none;">View on GitHub →</a>
+          </div>
+        </div>
+
+        <!-- react-simple-votes -->
+        <div class="app-card">
+          <h3 class="app-name"><a href="https://github.com/iamboliver/react-simple-votes" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">react-simple-votes</a></h3>
+          <p class="app-tagline">React hook for like/dislike voting</p>
+          <p class="app-description">A simple React hook for like/dislike voting. Works out of the box with localStorage, or connect your own API.</p>
+          <div class="app-footer">
+            <span class="badge badge-lang">TypeScript</span>
+            <a href="https://github.com/iamboliver/react-simple-votes" target="_blank" rel="noopener" style="font-size: 13px; color: var(--accent); text-decoration: none;">View on GitHub →</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -429,7 +468,7 @@
       <p class="section-heading">About</p>
       <h2 class="section-title">About</h2>
       <p class="about-text">
-        I'm Oliver — engineering director, dad, and occasional developer based in London, UK. I've spent 15+ years building large-scale AI and productivity tools for enterprise. On the side, I build things that matter closer to home.
+        I'm Oli — Engineering Director, dad, and late-night developer based in London. I've spent 15+ years building large-scale AI and productivity tools for enterprise. On the side, I build things that matter closer to home.
         <br><br>
         If you've found one of my apps useful, or want to get in touch, email <a href="mailto:hello@oliverbarwell.com">hello@oliverbarwell.com</a>
       </p>
@@ -442,7 +481,7 @@
       <p class="footer-copy">© 2026 Oliver Barwell</p>
       <div class="footer-links">
         <a href="mailto:hello@oliverbarwell.com">hello@oliverbarwell.com</a>
-        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="https://github.com/iamboliver" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
