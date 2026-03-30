@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oliver Barwell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --text: #1C1C1E;
+      --text-muted: #6B6B70;
+      --accent: #5C7A6B;
+      --accent-light: #EAF0ED;
+      --border: rgba(0, 0, 0, 0.1);
+      --card-bg: #FFFFFF;
+      --shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 0 72px;
+    }
+
+    .hero-name {
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-name span {
+      color: var(--accent);
+    }
+
+    .hero-primary {
+      font-size: clamp(17px, 2.5vw, 20px);
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .hero-secondary {
+      font-size: clamp(15px, 2vw, 17px);
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 40px;
+      line-height: 1.65;
+    }
+
+    /* ── APP CARDS ── */
+    .apps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .app-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .app-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .app-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .app-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .app-description {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .app-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    .badge-platform {
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(92, 122, 107, 0.2);
+    }
+
+    .badge-coming-soon {
+      background: #FDF3E7;
+      color: #A0622A;
+      border: 1px solid rgba(160, 98, 42, 0.2);
+    }
+
+    .badge-in-dev {
+      background: #F0EEF8;
+      color: #6B5FA0;
+      border: 1px solid rgba(107, 95, 160, 0.2);
+    }
+
+    /* ── OPEN SOURCE ── */
+    .empty-state {
+      background: var(--card-bg);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 40px 28px;
+      text-align: center;
+    }
+
+    .empty-state p {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 600px;
+    }
+
+    .about-text a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(92, 122, 107, 0.35);
+      transition: border-color 0.15s ease;
+    }
+
+    .about-text a:hover {
+      border-color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav {
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .hero {
+        padding: 52px 0 48px;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .app-card {
+        padding: 20px;
+      }
+
+      .app-card-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      footer .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-name">Oliver Barwell</a>
+      <ul class="nav-links">
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#open-source">Open Source</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1 class="hero-name">Oliver <span>Barwell</span></h1>
+      <p class="hero-primary">Dad of an autistic son. I build the apps we needed.</p>
+      <p class="hero-secondary">Engineering lead by day. iOS developer by night.</p>
+    </div>
+  </header>
+
+  <!-- APPS -->
+  <section id="apps">
+    <div class="container">
+      <p class="section-heading">Apps</p>
+      <h2 class="section-title">Apps I've built for our family</h2>
+      <p class="section-intro">My son is autistic. These apps started as solutions to real daily problems in our house.</p>
+
+      <div class="apps-grid">
+
+        <!-- Bricksweep -->
+        <div class="app-card">
+          <div class="app-card-header">
+            <h3 class="app-name">Bricksweep</h3>
+          </div>
+          <p class="app-tagline">Missing LEGO parts tracker for iOS</p>
+          <p class="app-description">My son is obsessed with LEGO but struggles to pack sets away. I built Bricksweep to track missing parts across all his sets, audit second-hand sets we buy, and export a BrickLink Wanted List to order replacements.</p>
+          <div class="app-footer">
+            <span class="badge badge-platform">iOS</span>
+            <span class="badge badge-coming-soon">App Store — coming soon</span>
+          </div>
+        </div>
+
+        <!-- Sleep Debt Tracker -->
+        <div class="app-card">
+          <div class="app-card-header">
+            <h3 class="app-name">Sleep Debt Tracker</h3>
+          </div>
+          <p class="app-tagline">Track your sleep debt on iOS</p>
+          <p class="app-description">My son comes into our room most nights. I needed a simple way to track the cumulative effect of broken sleep — not a complex sleep diary, just an honest running total.</p>
+          <div class="app-footer">
+            <span class="badge badge-platform">iOS</span>
+            <span class="badge badge-in-dev">In development</span>
+          </div>
+        </div>
+
+        <!-- Reading App -->
+        <div class="app-card">
+          <div class="app-card-header">
+            <h3 class="app-name">Reading App</h3>
+          </div>
+          <p class="app-tagline">Reading app built for autistic kids</p>
+          <p class="app-description">Built specifically for my son. A reading and literacy app designed around how autistic children actually engage with text.</p>
+          <div class="app-footer">
+            <span class="badge badge-platform">iOS</span>
+            <span class="badge badge-in-dev">In development</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN SOURCE -->
+  <section id="open-source">
+    <div class="container">
+      <p class="section-heading">Open Source</p>
+      <h2 class="section-title">Work I've open sourced</h2>
+      <p class="section-intro">Occasionally I open source tools and services I've built in a professional context. Listed here when available.</p>
+      <div class="empty-state">
+        <p>Projects will appear here as they're released.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-heading">About</p>
+      <h2 class="section-title">About</h2>
+      <p class="about-text">
+        I'm Oliver — engineering director, dad, and occasional iOS developer based in Brisbane, Australia. I've spent 15+ years building large-scale AI and productivity tools for enterprise. On the side, I build things that matter closer to home.
+        <br><br>
+        If you've found one of my apps useful, or want to get in touch, email <a href="mailto:hello@oliverbarwell.com">hello@oliverbarwell.com</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p class="footer-copy">© 2026 Oliver Barwell</p>
+      <div class="footer-links">
+        <a href="mailto:hello@oliverbarwell.com">hello@oliverbarwell.com</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
