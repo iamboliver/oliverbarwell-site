@@ -6,7 +6,7 @@
   <title>Oliver Barwell</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -223,10 +223,10 @@
       border: 1px solid rgba(92, 122, 107, 0.2);
     }
 
-    .badge-coming-soon {
-      background: #FDF3E7;
-      color: #A0622A;
-      border: 1px solid rgba(160, 98, 42, 0.2);
+    .badge-released {
+      background: #E7F2EC;
+      color: #3F6654;
+      border: 1px solid rgba(63, 102, 84, 0.22);
     }
 
     .badge-in-dev {
@@ -239,6 +239,27 @@
       background: #F0F0F0;
       color: #555555;
       border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .app-store-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      margin-left: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .app-store-link:hover {
+      color: #3F6654;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .app-store-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
 
     /* ── OPEN SOURCE ── */
@@ -374,16 +395,17 @@
 
       <div class="apps-grid">
 
-        <!-- Bricksweep -->
+        <!-- BrickSweep -->
         <div class="app-card">
           <div class="app-card-header">
-            <h3 class="app-name">Bricksweep</h3>
+            <h3 class="app-name">BrickSweep</h3>
           </div>
           <p class="app-tagline">Missing LEGO parts tracker for iOS</p>
-          <p class="app-description">My son is obsessed with LEGO but struggles to pack sets away. I built Bricksweep to track missing parts across all his sets, audit second-hand sets we buy, and export a BrickLink Wanted List to order replacements.</p>
+          <p class="app-description">My son is obsessed with LEGO but struggles to pack sets away. I built BrickSweep to track missing parts across all his sets, audit second-hand sets we buy, and export a BrickLink Wanted List to order replacements.</p>
           <div class="app-footer">
             <span class="badge badge-platform">iOS</span>
-            <span class="badge badge-coming-soon">App Store — coming soon</span>
+            <span class="badge badge-released">Released</span>
+            <a class="app-store-link" href="https://apps.apple.com/app/bricksweep/id6761452349" target="_blank" rel="noopener">View on the App Store →</a>
           </div>
         </div>
 
