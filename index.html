@@ -362,7 +362,6 @@
 
     .phone-frame {
       width: min(100%, 20rem);
-      aspect-ratio: 9 / 18.5;
       padding: 0.7rem;
       overflow: hidden;
       background: var(--device);
@@ -372,36 +371,18 @@
       box-shadow: 0 1.5rem 2.5rem rgba(23, 59, 44, 0.22);
     }
 
-    .screen-placeholder {
+    .phone-screen {
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-4);
-      padding: var(--space-8);
-      background: var(--surface);
-      color: var(--ink);
+      overflow: hidden;
+      padding-top: 0.6rem;
+      background: #F2F2F7;
       border-radius: 2.1rem 2.1rem 0 0;
-      text-align: center;
     }
 
-    .screen-placeholder img {
-      width: 5.5rem;
-      height: 5.5rem;
-      border-radius: 1.25rem;
-    }
-
-    .screen-placeholder strong {
-      font-family: var(--font-display);
-      font-size: 1.45rem;
-      line-height: 1.15;
-    }
-
-    .screen-placeholder span {
-      max-width: 18ch;
-      color: var(--ink-muted);
-      font-size: 0.925rem;
+    .phone-screen img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .workshop-list {
@@ -749,20 +730,9 @@
         border-radius: 2.3rem 2.3rem 0 0;
       }
 
-      .screen-placeholder {
-        gap: var(--space-3);
-        padding: var(--space-6);
+      .phone-screen {
+        padding-top: 0.45rem;
         border-radius: 1.7rem 1.7rem 0 0;
-      }
-
-      .screen-placeholder img {
-        width: 4.5rem;
-        height: 4.5rem;
-        border-radius: 1rem;
-      }
-
-      .screen-placeholder strong {
-        font-size: 1.25rem;
       }
 
       .workshop-list {
@@ -892,18 +862,15 @@
             </div>
           </div>
 
-          <div class="featured-visual" role="img" aria-label="BrickSweep app preview placeholder. Product screenshot coming soon.">
+          <div class="featured-visual">
             <div class="phone-frame">
-              <div class="screen-placeholder">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcset="assets/bricksweep-icon-128.avif 128w, assets/bricksweep-icon-192.avif 192w, assets/bricksweep-icon-256.avif 256w"
-                    sizes="(max-width: 38rem) 72px, 88px">
-                  <img src="assets/bricksweep-icon-192.png" width="192" height="192" loading="lazy" decoding="async" alt="">
-                </picture>
-                <strong>App preview</strong>
-                <span>Product screenshot coming soon.</span>
+              <div class="phone-screen">
+                <img
+                  src="assets/bricksweep-my-sets-729.webp"
+                  srcset="assets/bricksweep-my-sets-560.webp 560w, assets/bricksweep-my-sets-729.webp 729w"
+                  sizes="(max-width: 38rem) 12rem, (max-width: 44rem) 14rem, (max-width: 52rem) 16rem, 19rem"
+                  width="729" height="1314" loading="lazy" decoding="async"
+                  alt="BrickSweep's My Sets screen: 20 sets tracked with 21 pieces missing. Demolition Site is 100% complete, while Snow Groomer and Propeller Plane each show 98% with one missing piece.">
               </div>
             </div>
           </div>
