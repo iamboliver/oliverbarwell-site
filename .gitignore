@@ -1,1 +1,8 @@
 .DS_Store
+
+# Local working files
+test.py
+PLAN.md
+PRODUCT.md
+DESIGN.md
+.impeccable/
