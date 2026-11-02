@@ -1,6 +1,6 @@
 # Cloudflare's build clones this repo and publishes the whole folder as
 # static assets, so anything not listed here goes live at oliverbarwell.com/<path>.
-# Only index.html (and anything under assets/) is meant to be public.
+# Only index.html, bricksweep/ (app pages) and assets/ are meant to be public.
 
 # Dotfiles and dot-folders: .git (full history), .wrangler, .claude, .DS_Store
 .*
