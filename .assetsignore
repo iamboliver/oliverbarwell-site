@@ -1,0 +1,16 @@
+# Cloudflare's build clones this repo and publishes the whole folder as
+# static assets, so anything not listed here goes live at oliverbarwell.com/<path>.
+# Only index.html (and anything under assets/) is meant to be public.
+
+# Dotfiles and dot-folders: .git (full history), .wrangler, .claude, .DS_Store
+.*
+
+# Config the build generates or that only matters to GitHub Pages
+wrangler.jsonc
+wrangler.toml
+CNAME
+node_modules/
+
+# Working docs and scripts
+*.md
+*.py
