@@ -393,19 +393,23 @@
 
     .workshop-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       border-top: 1px solid var(--line);
     }
 
     .workshop-item {
       min-width: 0;
-      padding: var(--space-8) clamp(0rem, 4vw, var(--space-12)) var(--space-8) 0;
+      padding: var(--space-8) clamp(var(--space-6), 3vw, var(--space-8)) var(--space-8) 0;
       border-bottom: 1px solid var(--line);
     }
 
-    .workshop-item:nth-child(even) {
-      padding-inline: clamp(var(--space-6), 4vw, var(--space-12)) 0;
+    .workshop-item + .workshop-item {
+      padding-inline-start: clamp(var(--space-6), 3vw, var(--space-8));
       border-inline-start: 1px solid var(--line);
+    }
+
+    .workshop-item:last-child {
+      padding-inline-end: 0;
     }
 
     .workshop-status {
@@ -490,11 +494,16 @@
       border-radius: 999px;
     }
 
-    /* Puzzle labels differ in length ("Web app", "Guide"); equal widths keep
-       the description column aligned across rows. */
-    #puzzles .repo-language {
+    /* Labels differ in length ("Web app", "Guide", "TypeScript", "Python");
+       equal widths keep the description column aligned across rows. */
+    #puzzles .repo-language,
+    #open-source .repo-language {
       min-width: 5.5rem;
       text-align: center;
+    }
+
+    #open-source .repo-language {
+      min-width: 6.25rem;
     }
 
     .about-layout {
@@ -620,6 +629,15 @@
         width: min(100%, 17rem);
       }
 
+      .workshop-list {
+        grid-template-columns: 1fr;
+      }
+
+      .workshop-list .workshop-item {
+        padding: var(--space-8) 0;
+        border-inline-start: 0;
+      }
+
       .repo-link {
         grid-template-columns: 1fr auto;
         gap: var(--space-3) var(--space-6);
@@ -739,16 +757,6 @@
       .phone-screen {
         padding-top: 0.45rem;
         border-radius: 1.7rem 1.7rem 0 0;
-      }
-
-      .workshop-list {
-        grid-template-columns: 1fr;
-      }
-
-      .workshop-item,
-      .workshop-item:nth-child(even) {
-        padding: var(--space-8) 0;
-        border-inline-start: 0;
       }
 
       .repo-link {
@@ -896,6 +904,13 @@
             <p class="workshop-tagline">Literacy designed around autistic children</p>
             <p class="workshop-description">A reading app built specifically around how my son engages with words, repetition, and visual structure.</p>
           </article>
+
+          <article class="workshop-item">
+            <p class="workshop-status">In development</p>
+            <h3>Benched</h3>
+            <p class="workshop-tagline">A football guess-the-player game for iPad</p>
+            <p class="workshop-description">Two players, two iPads and a board of 24 real footballers. Ask yes-or-no questions out loud, knock down the cards that don't fit, and name the other player's pick first. Play side by side, or apart over FaceTime with SharePlay.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -927,7 +942,7 @@
       <div class="container">
         <div class="section-header">
           <h2 id="open-source-title">Open-source work</h2>
-          <p>Small tools and experiments from my professional engineering work, released when they may be useful to someone else.</p>
+          <p>Small tools and experiments from work and home, released when they may be useful to someone else.</p>
         </div>
 
         <div class="repo-list">
@@ -947,6 +962,12 @@
             <span class="repo-name">react-simple-votes</span>
             <span class="repo-description">A small React hook for like and dislike voting, with local storage or a custom API.</span>
             <span class="repo-meta"><span class="repo-language">TypeScript</span><span aria-hidden="true">↗</span></span>
+          </a>
+
+          <a class="repo-link" href="https://github.com/iamboliver/charge-nudge" target="_blank" rel="noopener noreferrer" aria-label="View charge-nudge on GitHub, opens in a new tab">
+            <span class="repo-name">charge-nudge</span>
+            <span class="repo-description">Sends at most one Telegram reminder a day when a Hyundai EV's battery is low and it isn't plugged in, using Bluelink's cached status.</span>
+            <span class="repo-meta"><span class="repo-language">Python</span><span aria-hidden="true">↗</span></span>
           </a>
         </div>
       </div>
