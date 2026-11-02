@@ -2,12 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oliver Barwell</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Oliver Barwell builds practical iOS apps for his family and open-source tools for engineering teams.">
+  <meta name="theme-color" content="#F7F7F2">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Oliver Barwell | Apps built close to home">
+  <meta property="og:description" content="Practical iOS apps built around real family needs, plus open-source engineering work.">
+  <meta property="og:url" content="https://oliverbarwell.com/">
+  <meta property="og:image" content="https://oliverbarwell.com/assets/bricksweep-icon.png">
+  <meta name="twitter:card" content="summary">
+  <title>Oliver Barwell | Apps built close to home</title>
+  <link rel="canonical" href="https://oliverbarwell.com/">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/bricksweep-icon-192.png">
+  <link rel="preload" href="assets/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/atkinson-hyperlegible-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/bitter-700.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    @font-face {
+      font-family: "Atkinson Hyperlegible";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("assets/atkinson-hyperlegible-400.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Atkinson Hyperlegible";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("assets/atkinson-hyperlegible-700.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Bitter";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("assets/bitter-700.woff2") format("woff2");
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -15,15 +50,36 @@
     }
 
     :root {
-      --bg: #F8F7F4;
-      --text: #1C1C1E;
-      --text-muted: #6B6B70;
-      --accent: #5C7A6B;
-      --accent-light: #EAF0ED;
-      --border: rgba(0, 0, 0, 0.1);
-      --card-bg: #FFFFFF;
-      --shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-      --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
+      --canvas: #F7F7F2;
+      --surface: #FFFFFF;
+      --ink: #172019;
+      --ink-muted: #555F58;
+      --accent: #456655;
+      --accent-soft: #E3EBE6;
+      --flagship: #173B2C;
+      --flagship-muted: #C7D8CF;
+      --line: #D7DDD8;
+      --development: #EEEAF5;
+      --development-ink: #5D518B;
+      --focus: #D08A24;
+      --release: #8FD0A9;
+      --action-hover: #EEF5F1;
+      --preview: #DDE9E2;
+      --device: #101713;
+      --device-edge: #34453B;
+      --font-display: "Bitter", Georgia, serif;
+      --font-body: "Atkinson Hyperlegible", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-24: 6rem;
+      --radius-lg: 1.25rem;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     html {
@@ -31,274 +87,468 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      font-size: 16px;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+      border-radius: 0.2rem;
+      box-shadow: 0 0 0 2px var(--ink);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 10;
+      inset-block-start: var(--space-3);
+      inset-inline-start: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--ink);
+      color: var(--surface);
+      text-decoration: none;
+      transform: translateY(-180%);
+      transition: transform 180ms var(--ease-out);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    main:focus {
+      outline: none;
     }
 
     .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
+      width: min(100% - 3rem, 72rem);
+      margin-inline: auto;
     }
 
-    /* ── NAVIGATION ── */
-    nav {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
+    .site-nav {
+      border-bottom: 1px solid var(--line);
+      background: var(--canvas);
     }
 
-    nav .container {
+    .site-nav .container {
+      min-height: 4.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-6);
+    }
+
+    .nav-name,
+    .nav-links a {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
     }
 
     .nav-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.01em;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
+      align-items: center;
+      gap: clamp(var(--space-2), 2vw, var(--space-6));
       list-style: none;
     }
 
     .nav-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
+      padding-inline: var(--space-2);
+      color: var(--ink-muted);
+      font-size: 0.925rem;
+      text-underline-offset: 0.3em;
+      transition: color 180ms var(--ease-out);
     }
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    /* ── HERO ── */
     .hero {
-      padding: 80px 0 72px;
+      padding-block: clamp(var(--space-16), 9vw, 8rem);
     }
 
-    .hero-name {
-      font-size: clamp(36px, 6vw, 52px);
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 20px;
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(16rem, 0.55fr);
+      gap: clamp(var(--space-12), 8vw, var(--space-24));
+      align-items: end;
     }
 
-    .hero-name span {
+    .hero h1 {
+      max-width: 12ch;
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7.8vw, 5.75rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+      text-wrap: balance;
+    }
+
+    .hero h1 span {
       color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 31rem;
+      padding-block-end: var(--space-2);
     }
 
     .hero-primary {
-      font-size: clamp(17px, 2.5vw, 20px);
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 8px;
+      margin-bottom: var(--space-3);
+      font-size: clamp(1.25rem, 2.3vw, 1.6rem);
+      font-weight: 700;
+      line-height: 1.25;
+      text-wrap: pretty;
     }
 
     .hero-secondary {
-      font-size: clamp(15px, 2vw, 17px);
-      color: var(--text-muted);
-      font-weight: 400;
+      color: var(--ink-muted);
+      font-size: 1.0625rem;
     }
 
-    /* ── SECTIONS ── */
-    section {
-      padding: 64px 0;
-      border-top: 1px solid var(--border);
+    main > section {
+      padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+      border-top: 1px solid var(--line);
     }
 
-    .section-heading {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 12px;
+    .section-header {
+      max-width: 43rem;
+      margin-bottom: clamp(var(--space-8), 5vw, var(--space-12));
     }
 
-    .section-title {
-      font-size: clamp(22px, 4vw, 28px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      color: var(--text);
-      margin-bottom: 12px;
+    .section-header h2 {
+      margin-bottom: var(--space-4);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      text-wrap: balance;
     }
 
-    .section-intro {
-      font-size: 16px;
-      color: var(--text-muted);
-      max-width: 640px;
-      margin-bottom: 40px;
-      line-height: 1.65;
+    .section-header p {
+      max-width: 62ch;
+      color: var(--ink-muted);
+      font-size: 1.0625rem;
+      text-wrap: pretty;
     }
 
-    /* ── APP CARDS ── */
-    .apps-grid {
+    .featured-app {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+      min-height: 39rem;
+      overflow: hidden;
+      background: var(--flagship);
+      color: var(--surface);
+      border-radius: var(--radius-lg);
     }
 
-    .app-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    .featured-copy {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      padding: clamp(var(--space-8), 6vw, var(--space-16));
     }
 
-    .app-card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-1px);
-    }
-
-    .app-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 10px;
-    }
-
-    .app-name {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .app-tagline {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      font-weight: 400;
-    }
-
-    .app-description {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 18px;
-    }
-
-    .app-footer {
+    .app-lockup {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: auto;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
     }
 
-    /* ── BADGES ── */
-    .badge {
+    .app-icon {
+      width: 5rem;
+      height: 5rem;
+      flex: 0 0 auto;
+      border-radius: 1.15rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.22);
+    }
+
+    .release-label {
       display: inline-flex;
       align-items: center;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
+      gap: var(--space-2);
+      color: var(--flagship-muted);
+      font-size: 0.875rem;
+      font-weight: 700;
     }
 
-    .badge-platform {
-      background: var(--accent-light);
-      color: var(--accent);
-      border: 1px solid rgba(92, 122, 107, 0.2);
+    .release-label::before {
+      width: 0.55rem;
+      height: 0.55rem;
+      content: "";
+      border-radius: 50%;
+      background: var(--release);
     }
 
-    .badge-released {
-      background: #E7F2EC;
-      color: #3F6654;
-      border: 1px solid rgba(63, 102, 84, 0.22);
+    .featured-copy h3 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4.25rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
     }
 
-    .badge-in-dev {
-      background: #F0EEF8;
-      color: #6B5FA0;
-      border: 1px solid rgba(107, 95, 160, 0.2);
+    .featured-tagline {
+      margin-block: var(--space-6) var(--space-4);
+      color: var(--surface);
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .badge-lang {
-      background: #F0F0F0;
-      color: #555555;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+    .featured-description {
+      max-width: 53ch;
+      color: var(--flagship-muted);
+      font-size: 1.0625rem;
+      text-wrap: pretty;
     }
 
-    .app-store-link {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
+    .featured-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    .primary-link {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: var(--space-6);
+      background: var(--surface);
+      color: var(--flagship);
+      border-radius: 999px;
+      font-weight: 700;
       text-decoration: none;
-      margin-left: 2px;
-      transition: color 0.15s ease;
+      transition: background-color 180ms var(--ease-out), transform 180ms var(--ease-out);
     }
 
-    .app-store-link:hover {
-      color: #3F6654;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .primary-link:active {
+      background: var(--action-hover);
+      transform: translateY(0);
     }
 
-    .app-store-link:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-      border-radius: 2px;
+    .featured-meta {
+      color: var(--flagship-muted);
+      font-size: 0.875rem;
     }
 
-    /* ── OPEN SOURCE ── */
-    .empty-state {
-      background: var(--card-bg);
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      padding: 40px 28px;
+    .featured-visual {
+      min-width: 0;
+      display: grid;
+      place-items: end center;
+      padding: clamp(var(--space-8), 5vw, var(--space-12)) clamp(var(--space-6), 4vw, var(--space-12)) 0;
+      background: var(--preview);
+    }
+
+    .phone-frame {
+      width: min(100%, 20rem);
+      aspect-ratio: 9 / 18.5;
+      padding: 0.7rem;
+      overflow: hidden;
+      background: var(--device);
+      border: 0.2rem solid var(--device-edge);
+      border-bottom: 0;
+      border-radius: 2.8rem 2.8rem 0 0;
+      box-shadow: 0 1.5rem 2.5rem rgba(23, 59, 44, 0.22);
+    }
+
+    .screen-placeholder {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
+      padding: var(--space-8);
+      background: var(--surface);
+      color: var(--ink);
+      border-radius: 2.1rem 2.1rem 0 0;
       text-align: center;
     }
 
-    .empty-state p {
-      font-size: 15px;
-      color: var(--text-muted);
+    .screen-placeholder img {
+      width: 5.5rem;
+      height: 5.5rem;
+      border-radius: 1.25rem;
     }
 
-    /* ── ABOUT ── */
-    .about-text {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.75;
-      max-width: 680px;
+    .screen-placeholder strong {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.15;
     }
 
-    .about-text a {
+    .screen-placeholder span {
+      max-width: 18ch;
+      color: var(--ink-muted);
+      font-size: 0.925rem;
+    }
+
+    .workshop-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+    }
+
+    .workshop-item {
+      min-width: 0;
+      padding: var(--space-8) clamp(0rem, 4vw, var(--space-12)) var(--space-8) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .workshop-item:nth-child(even) {
+      padding-inline: clamp(var(--space-6), 4vw, var(--space-12)) 0;
+      border-inline-start: 1px solid var(--line);
+    }
+
+    .workshop-status {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.75rem;
+      margin-bottom: var(--space-4);
+      padding-inline: var(--space-3);
+      background: var(--development);
+      color: var(--development-ink);
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .workshop-item h3 {
+      margin-bottom: var(--space-2);
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .workshop-tagline {
+      margin-bottom: var(--space-3);
       color: var(--accent);
+      font-weight: 700;
+    }
+
+    .workshop-description {
+      max-width: 54ch;
+      color: var(--ink-muted);
+      text-wrap: pretty;
+    }
+
+    .repo-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .repo-link {
+      min-height: 8rem;
+      display: grid;
+      grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.2fr) auto;
+      gap: var(--space-8);
+      align-items: center;
+      padding-block: var(--space-6);
+      border-bottom: 1px solid var(--line);
       text-decoration: none;
-      border-bottom: 1px solid rgba(92, 122, 107, 0.35);
-      transition: border-color 0.15s ease;
+      transition: color 180ms var(--ease-out), transform 180ms var(--ease-out);
     }
 
-    .about-text a:hover {
-      border-color: var(--accent);
+    .repo-link:active {
+      color: var(--ink);
     }
 
-    /* ── FOOTER ── */
+    .repo-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .repo-description {
+      color: var(--ink-muted);
+      text-wrap: pretty;
+    }
+
+    .repo-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-4);
+      white-space: nowrap;
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .repo-language {
+      padding: var(--space-1) var(--space-3);
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+    }
+
+    /* Puzzle labels differ in length ("Web app", "Guide"); equal widths keep
+       the description column aligned across rows. */
+    #puzzles .repo-language {
+      min-width: 5.5rem;
+      text-align: center;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+      gap: clamp(var(--space-12), 9vw, 8rem);
+      align-items: start;
+    }
+
+    .about-layout h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .about-copy {
+      max-width: 43rem;
+      color: var(--ink-muted);
+      font-size: 1.125rem;
+    }
+
+    .about-copy p + p {
+      margin-top: var(--space-6);
+    }
+
+    .contact-link {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration-thickness: 0.1em;
+      text-underline-offset: 0.25em;
+      overflow-wrap: anywhere;
+      transition: color 180ms var(--ease-out);
+    }
+
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
+      padding-block: var(--space-8);
+      border-top: 1px solid var(--line);
     }
 
     footer .container {
@@ -306,207 +556,451 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: var(--space-4);
     }
 
     .footer-copy {
-      font-size: 13px;
-      color: var(--text-muted);
+      color: var(--ink-muted);
+      font-size: 0.875rem;
     }
 
     .footer-links {
       display: flex;
-      gap: 20px;
+      gap: var(--space-3);
     }
 
     .footer-links a {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.15s ease;
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      padding-inline: var(--space-2);
+      color: var(--ink-muted);
+      font-size: 0.875rem;
+      text-underline-offset: 0.3em;
+      transition: color 180ms var(--ease-out);
     }
 
-    .footer-links a:hover {
+    .nav-links a:active,
+    .footer-links a:active {
       color: var(--accent);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      nav {
-        padding: 16px 0;
+    .contact-link:active {
+      color: var(--ink);
+    }
+
+    @media (hover: hover) {
+      .nav-links a:hover {
+        color: var(--accent);
+        text-decoration: underline;
       }
 
-      .nav-links {
-        gap: 16px;
+      .primary-link:hover {
+        background: var(--action-hover);
+        transform: translateY(-2px);
       }
 
-      .hero {
-        padding: 52px 0 48px;
+      .repo-link:hover {
+        color: var(--accent);
+        transform: translateX(var(--space-2));
       }
 
-      section {
-        padding: 48px 0;
+      .contact-link:hover,
+      .footer-links a:hover {
+        color: var(--ink);
       }
+    }
 
-      .apps-grid {
+    @media (max-width: 52rem) {
+      .hero-layout,
+      .about-layout {
         grid-template-columns: 1fr;
       }
 
-      .app-card {
-        padding: 20px;
+      .hero-copy {
+        max-width: 40rem;
+      }
+
+      .featured-copy {
+        padding: clamp(var(--space-8), 5vw, var(--space-12));
+      }
+
+      .featured-visual {
+        padding-inline: clamp(var(--space-4), 3vw, var(--space-8));
+      }
+
+      .phone-frame {
+        width: min(100%, 17rem);
+      }
+
+      .repo-link {
+        grid-template-columns: 1fr auto;
+        gap: var(--space-3) var(--space-6);
+      }
+
+      .repo-description {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+    }
+
+    @media (max-width: 44rem) {
+      .featured-app {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .featured-visual {
+        height: 23rem;
+        min-height: 0;
+        overflow: hidden;
+        padding-top: var(--space-8);
+      }
+
+      .phone-frame {
+        width: 15rem;
+        height: 25rem;
+        aspect-ratio: auto;
+      }
+    }
+
+    @media (max-width: 38rem) {
+      .container {
+        width: min(100% - 2rem, 72rem);
+      }
+
+      .site-nav .container {
+        min-height: 4rem;
+        gap: var(--space-2);
+      }
+
+      .nav-name {
+        font-size: 0.925rem;
+      }
+
+      .nav-links {
+        gap: 0;
+      }
+
+      .nav-links a {
+        padding-inline: 0.45rem;
+        font-size: 0.875rem;
+      }
+
+      .hero {
+        padding-block: var(--space-16);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.75rem, 15vw, 4rem);
+      }
+
+      .featured-copy {
+        padding: var(--space-8) var(--space-6) var(--space-6);
+      }
+
+      .app-lockup {
+        gap: var(--space-3);
+        margin-bottom: var(--space-4);
+      }
+
+      .app-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 0.9rem;
+      }
+
+      .featured-copy h3 {
+        font-size: clamp(2.25rem, 11vw, 3rem);
+      }
+
+      .featured-tagline {
+        margin-block: var(--space-4) var(--space-3);
+      }
+
+      .featured-description {
+        font-size: 1rem;
+      }
+
+      .featured-actions {
+        align-items: stretch;
+        flex-direction: column;
+        gap: var(--space-2);
+        margin-top: var(--space-6);
+      }
+
+      .primary-link {
+        width: 100%;
+      }
+
+      .featured-meta {
+        text-align: center;
+      }
+
+      .featured-visual {
+        height: 20rem;
+        padding: var(--space-6) var(--space-4) 0;
+      }
+
+      .phone-frame {
+        width: 13rem;
+        height: 22rem;
+        padding: 0.55rem;
+        border-radius: 2.3rem 2.3rem 0 0;
+      }
+
+      .screen-placeholder {
+        gap: var(--space-3);
+        padding: var(--space-6);
+        border-radius: 1.7rem 1.7rem 0 0;
+      }
+
+      .screen-placeholder img {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 1rem;
+      }
+
+      .screen-placeholder strong {
+        font-size: 1.25rem;
+      }
+
+      .workshop-list {
+        grid-template-columns: 1fr;
+      }
+
+      .workshop-item,
+      .workshop-item:nth-child(even) {
+        padding: var(--space-8) 0;
+        border-inline-start: 0;
+      }
+
+      .repo-link {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        padding-block: var(--space-6);
+      }
+
+      .repo-description {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .repo-meta {
+        justify-content: space-between;
       }
 
       footer .container {
-        flex-direction: column;
         align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 22rem) {
+      .site-nav .container {
+        gap: var(--space-1);
+      }
+
+      .nav-name {
+        font-size: 0.875rem;
+        white-space: nowrap;
+      }
+
+      .nav-links a {
+        padding-inline: 0.3rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .primary-link:hover,
+      .repo-link:hover {
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- NAVIGATION -->
-  <nav>
+  <nav class="site-nav" aria-label="Primary navigation">
     <div class="container">
-      <a href="#" class="nav-name">Oliver Barwell</a>
+      <a href="#" class="nav-name" aria-label="Oliver Barwell, home">Oliver Barwell</a>
       <ul class="nav-links">
         <li><a href="#apps">Apps</a></li>
-        <li><a href="#open-source">Open Source</a></li>
+        <li><a href="#puzzles">Puzzles</a></li>
+        <li><a href="#open-source">Open source</a></li>
         <li><a href="#about">About</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
-    <div class="container">
-      <h1 class="hero-name">Oliver <span>Barwell</span></h1>
-      <p class="hero-primary">Dad of an autistic son. I build the apps we need.</p>
-      <p class="hero-secondary">Engineering lead by day. Indie developer by night.</p>
+    <div class="container hero-layout">
+      <h1>Oliver <span>Barwell</span></h1>
+      <div class="hero-copy">
+        <p class="hero-primary">Dad of an autistic son. I build the apps we need.</p>
+        <p class="hero-secondary">Engineering lead by day. Indie developer by night.</p>
+      </div>
     </div>
   </header>
 
-  <!-- APPS -->
-  <section id="apps">
-    <div class="container">
-      <p class="section-heading">Apps</p>
-      <h2 class="section-title">Apps I've built for our family</h2>
-      <p class="section-intro">These apps started as solutions to real daily problems in our house.</p>
-
-      <div class="apps-grid">
-
-        <!-- BrickSweep -->
-        <div class="app-card">
-          <div class="app-card-header">
-            <h3 class="app-name">BrickSweep</h3>
-          </div>
-          <p class="app-tagline">Missing LEGO parts tracker for iOS</p>
-          <p class="app-description">My son is obsessed with LEGO but struggles to pack sets away. I built BrickSweep to track missing parts across all his sets, audit second-hand sets we buy, and export a BrickLink Wanted List to order replacements.</p>
-          <div class="app-footer">
-            <span class="badge badge-platform">iOS</span>
-            <span class="badge badge-released">Released</span>
-            <a class="app-store-link" href="https://apps.apple.com/app/bricksweep/id6761452349" target="_blank" rel="noopener">View on the App Store →</a>
-          </div>
+  <main id="main-content" tabindex="-1">
+    <section id="apps" aria-labelledby="apps-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="apps-title">Built close to home</h2>
+          <p>These apps began with daily problems in our family. BrickSweep is the first one available to everyone.</p>
         </div>
 
-        <!-- Sleep Debt Tracker -->
-        <div class="app-card">
-          <div class="app-card-header">
-            <h3 class="app-name">Sleep Debt Tracker</h3>
+        <article class="featured-app" aria-labelledby="bricksweep-title">
+          <div class="featured-copy">
+            <div class="app-lockup">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="assets/bricksweep-icon-128.avif 128w, assets/bricksweep-icon-192.avif 192w, assets/bricksweep-icon-256.avif 256w"
+                  sizes="(max-width: 38rem) 64px, 80px">
+                <img class="app-icon" src="assets/bricksweep-icon-192.png" width="192" height="192" decoding="async" alt="BrickSweep app icon showing a checklist surrounded by colourful toy bricks">
+              </picture>
+              <div>
+                <p class="release-label">Available on the App Store</p>
+                <h3 id="bricksweep-title">BrickSweep</h3>
+              </div>
+            </div>
+            <p class="featured-tagline">Find the missing pieces. Finish the set.</p>
+            <p class="featured-description">My son loves building with LEGO, but keeping every part together is difficult. BrickSweep tracks missing pieces, audits second-hand sets, and exports a BrickLink Wanted List when it is time to order replacements.</p>
+            <div class="featured-actions">
+              <a class="primary-link" href="https://apps.apple.com/app/bricksweep/id6761452349" target="_blank" rel="noopener noreferrer" aria-label="View BrickSweep on the App Store, opens in a new tab">View on the App Store <span aria-hidden="true">&nbsp;↗</span></a>
+              <span class="featured-meta">Free download · iPhone · iOS 18+</span>
+            </div>
           </div>
-          <p class="app-tagline">Track your sleep debt on iOS</p>
-          <p class="app-description">My son comes into our room most nights. I needed a simple way to track the cumulative effect of broken sleep — not a complex sleep diary, just an honest running total.</p>
-          <div class="app-footer">
-            <span class="badge badge-platform">iOS</span>
-            <span class="badge badge-in-dev">In development</span>
-          </div>
-        </div>
 
-        <!-- Reading App -->
-        <div class="app-card">
-          <div class="app-card-header">
-            <h3 class="app-name">Reading App</h3>
+          <div class="featured-visual" role="img" aria-label="BrickSweep app preview placeholder. Product screenshot coming soon.">
+            <div class="phone-frame">
+              <div class="screen-placeholder">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcset="assets/bricksweep-icon-128.avif 128w, assets/bricksweep-icon-192.avif 192w, assets/bricksweep-icon-256.avif 256w"
+                    sizes="(max-width: 38rem) 72px, 88px">
+                  <img src="assets/bricksweep-icon-192.png" width="192" height="192" loading="lazy" decoding="async" alt="">
+                </picture>
+                <strong>App preview</strong>
+                <span>Product screenshot coming soon.</span>
+              </div>
+            </div>
           </div>
-          <p class="app-tagline">Reading app built for autistic kids</p>
-          <p class="app-description">Built specifically for my son. A reading and literacy app designed around how autistic children actually engage with text.</p>
-          <div class="app-footer">
-            <span class="badge badge-platform">iOS</span>
-            <span class="badge badge-in-dev">In development</span>
-          </div>
-        </div>
+        </article>
 
+        <div class="workshop-list" aria-label="Apps in development">
+          <article class="workshop-item">
+            <p class="workshop-status">In development</p>
+            <h3>Sleep Debt Tracker</h3>
+            <p class="workshop-tagline">A clear account of broken sleep</p>
+            <p class="workshop-description">My son comes into our room most nights. This keeps an honest running total of the sleep we miss, without turning it into a complex diary.</p>
+          </article>
+
+          <article class="workshop-item">
+            <p class="workshop-status">In development</p>
+            <h3>Reading App</h3>
+            <p class="workshop-tagline">Literacy designed around autistic children</p>
+            <p class="workshop-description">A reading app built specifically around how my son engages with words, repetition, and visual structure.</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- OPEN SOURCE -->
-  <section id="open-source">
-    <div class="container">
-      <p class="section-heading">Open Source</p>
-      <h2 class="section-title">Work I've open sourced</h2>
-      <p class="section-intro">Occasionally I open source tools and services I've built in a professional context. Listed here when available.</p>
-      <div class="apps-grid">
-
-        <!-- engineer-dash -->
-        <div class="app-card">
-          <h3 class="app-name"><a href="https://github.com/iamboliver/engineer-dash" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">engineer-dash</a></h3>
-          <p class="app-tagline">Engineering delivery metrics dashboard</p>
-          <p class="app-description">React dashboard visualising Jira delivery metrics across engineers and teams — cycle times, lead times, throughput, and production releases.</p>
-          <div class="app-footer">
-            <span class="badge badge-lang">TypeScript</span>
-            <a href="https://github.com/iamboliver/engineer-dash" target="_blank" rel="noopener" style="font-size: 13px; color: var(--accent); text-decoration: none;">View on GitHub →</a>
-          </div>
+    <section id="puzzles" aria-labelledby="puzzles-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="puzzles-title">Puzzles, solved</h2>
+          <p>Free tools that run right here in your browser. No download, no account.</p>
         </div>
 
-        <!-- dynamic-product-timeline -->
-        <div class="app-card">
-          <h3 class="app-name"><a href="https://github.com/iamboliver/dynamic-product-timeline" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">dynamic-product-timeline</a></h3>
-          <p class="app-tagline">Interactive product roadmap timeline</p>
-          <p class="app-description">A horizontal timeline component for showcasing product features, releases, and roadmaps. Built with React, TypeScript, and Framer Motion.</p>
-          <div class="app-footer">
-            <span class="badge badge-lang">TypeScript</span>
-            <a href="https://github.com/iamboliver/dynamic-product-timeline" target="_blank" rel="noopener" style="font-size: 13px; color: var(--accent); text-decoration: none;">View on GitHub →</a>
-          </div>
-        </div>
+        <div class="repo-list">
+          <a class="repo-link" href="/step-pyramid">
+            <span class="repo-name">Step Pyramid</span>
+            <span class="repo-description">A Pyraminx solver. Colour in your scrambled puzzle and follow every turn in 3D, for the standard and 4-layer Master Pyraminx.</span>
+            <span class="repo-meta"><span class="repo-language">Web app</span><span aria-hidden="true">→</span></span>
+          </a>
 
-        <!-- react-simple-votes -->
-        <div class="app-card">
-          <h3 class="app-name"><a href="https://github.com/iamboliver/react-simple-votes" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">react-simple-votes</a></h3>
-          <p class="app-tagline">React hook for like/dislike voting</p>
-          <p class="app-description">A simple React hook for like/dislike voting. Works out of the box with localStorage, or connect your own API.</p>
-          <div class="app-footer">
-            <span class="badge badge-lang">TypeScript</span>
-            <a href="https://github.com/iamboliver/react-simple-votes" target="_blank" rel="noopener" style="font-size: 13px; color: var(--accent); text-decoration: none;">View on GitHub →</a>
-          </div>
+          <a class="repo-link" href="/step-pyramid/how-to-solve">
+            <span class="repo-name">How to solve a Pyraminx</span>
+            <span class="repo-description">A beginner's guide to solving it by hand: four stages, four short move sequences.</span>
+            <span class="repo-meta"><span class="repo-language">Guide</span><span aria-hidden="true">→</span></span>
+          </a>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <p class="section-heading">About</p>
-      <h2 class="section-title">About</h2>
-      <p class="about-text">
-        I'm Oli — Engineering Director, dad, and late-night developer based in London. I've spent 15+ years building large-scale AI and productivity tools for enterprise. On the side, I build things that matter closer to home.
-        <br><br>
-        If you've found one of my apps useful, or want to get in touch, email <a href="mailto:hello@oliverbarwell.com">hello@oliverbarwell.com</a>
-      </p>
-    </div>
-  </section>
+    <section id="open-source" aria-labelledby="open-source-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="open-source-title">Open-source work</h2>
+          <p>Small tools and experiments from my professional engineering work, released when they may be useful to someone else.</p>
+        </div>
 
-  <!-- FOOTER -->
+        <div class="repo-list">
+          <a class="repo-link" href="https://github.com/iamboliver/engineer-dash" target="_blank" rel="noopener noreferrer" aria-label="View engineer-dash on GitHub, opens in a new tab">
+            <span class="repo-name">engineer-dash</span>
+            <span class="repo-description">A React dashboard for Jira delivery metrics, including cycle time, lead time, throughput, and releases.</span>
+            <span class="repo-meta"><span class="repo-language">TypeScript</span><span aria-hidden="true">↗</span></span>
+          </a>
+
+          <a class="repo-link" href="https://github.com/iamboliver/dynamic-product-timeline" target="_blank" rel="noopener noreferrer" aria-label="View dynamic-product-timeline on GitHub, opens in a new tab">
+            <span class="repo-name">dynamic-product-timeline</span>
+            <span class="repo-description">An interactive React timeline for product features, releases, and roadmaps.</span>
+            <span class="repo-meta"><span class="repo-language">TypeScript</span><span aria-hidden="true">↗</span></span>
+          </a>
+
+          <a class="repo-link" href="https://github.com/iamboliver/react-simple-votes" target="_blank" rel="noopener noreferrer" aria-label="View react-simple-votes on GitHub, opens in a new tab">
+            <span class="repo-name">react-simple-votes</span>
+            <span class="repo-description">A small React hook for like and dislike voting, with local storage or a custom API.</span>
+            <span class="repo-meta"><span class="repo-language">TypeScript</span><span aria-hidden="true">↗</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="container about-layout">
+        <h2 id="about-title">Engineering at work. Useful things at home.</h2>
+        <div class="about-copy">
+          <p>I'm Oli, an Engineering Director, dad, and late-night developer based in London. I've spent more than 15 years building large-scale AI and productivity tools for enterprise. On the side, I make practical software for problems that matter closer to home.</p>
+          <p>If one of these apps has helped your family, or you would like to talk about the work, <a class="contact-link" href="mailto:hello@oliverbarwell.com">email hello@oliverbarwell.com</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
     <div class="container">
       <p class="footer-copy">© 2026 Oliver Barwell</p>
-      <div class="footer-links">
-        <a href="mailto:hello@oliverbarwell.com">hello@oliverbarwell.com</a>
-        <a href="https://github.com/iamboliver" target="_blank" rel="noopener">GitHub</a>
-      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="mailto:hello@oliverbarwell.com">Email</a>
+        <a href="https://github.com/iamboliver" target="_blank" rel="noopener noreferrer" aria-label="Oliver Barwell on GitHub, opens in a new tab">GitHub <span aria-hidden="true">&nbsp;↗</span></a>
+      </nav>
     </div>
   </footer>
-
+  <!-- Cloudflare Web Analytics: added by hand because automatic injection
+       doesn't reach Worker-served pages -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c3fcb419b6a74995a3f8e273bf29abf2"}'></script>
 </body>
 </html>
